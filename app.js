@@ -45,3 +45,10 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+//establishing a connection to our Atlas MongoDB
+require('dotenv').config();
+const connectionString =
+process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString);
