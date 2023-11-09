@@ -22,34 +22,34 @@ var usersRouter = require('./routes/users');
 var peacockRouter = require('./routes/peacock');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
-var Costume = require("./models/peacock");
+var peacock = require("./models/peacock");
 
 
 var app = express();
 async function recreateDB(){
-  // Delete everything
-  await peacock.deleteMany();
-  let instance1 = new
-  peacock({peacock_color:"blue",peacock_breed:"Pavo cristatus peacock",peacock_price:2500});
-  let instance2 = new
-  peacock({peacock_color:"white",peacock_breed:"white peafowl",peacock_price:7500});
-  let instance3 = new
-  peacock({peacock_color:"green",peacock_breed:"Green Peafowl",peacock_price:8000});
-  instance1.save().then(doc=>{
-    console.log("First object saved")}
+// Delete everything
+await peacock.deleteMany();
+let instance1 = new
+peacock({peacock_color:"blue",peacock_breed:"Pavo cristatus peacock",peacock_price:2500});
+let instance2 = new
+peacock({peacock_color:"white",peacock_breed:"white peafowl",peacock_price:7500});
+let instance3 = new
+peacock({peacock_color:"green",peacock_breed:"Green Peafowl",peacock_price:8000});
+instance1.save().then(doc=>{
+  console.log("First object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+  instance2.save().then(doc=>{
+    console.log("Second object saved")}
     ).catch(err=>{
     console.error(err)
     });
-    instance2.save().then(doc=>{
-      console.log("Second object saved")}
+    instance3.save().then(doc=>{
+      console.log("Third object saved")}
       ).catch(err=>{
       console.error(err)
       });
-      instance3.save().then(doc=>{
-        console.log("Third object saved")}
-        ).catch(err=>{
-        console.error(err)
-        });
  }
  let reseed = true;
  if (reseed) { recreateDB();}

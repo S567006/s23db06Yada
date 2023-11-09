@@ -1,8 +1,7 @@
-const mongoose = require("mongoose")
-const peacock = mongoose.Schema({
-peacock_color: String,
-peacock_breed: String,
-peacock_price: Number
-})
-module.exports = mongoose.model("Costume",
-peacock)
+var express = require('express');
+var router = express.Router();
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('peacock', { title: 'Search Results peacock' });
+});
+module.exports = router;
