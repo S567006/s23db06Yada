@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('peacock', { title: 'Search Results peacock' });
-});
-module.exports = router;
+const mongoose = require("mongoose")
+const peacock = mongoose.Schema({
+costume_type: String,
+size: String,
+cost: Number
+})
+module.exports = mongoose.model("Costume",
+peacock)
