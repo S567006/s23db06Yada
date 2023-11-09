@@ -8,9 +8,7 @@ require('dotenv').config();
 const connectionString =
 process.env.MONGO_CON
 mongoose = require('mongoose');
-mongoose.connect(connectionString,
-{userNewUrlParser: true,
-useUnifiedTopology: true});
+mongoose.connect(connectionString);
 
 //Get the default connection
 var db = mongoose.connection;
@@ -19,27 +17,26 @@ db.on('error', console.error.bind(console, 'MongoDB connectionerror:'));
 db.once("open", function(){
 console.log("Connection to DB succeeded")});
 
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var peacockRouter = require('./routes/peacock');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
 var peacock = require("./models/peacock");
-
+var resourceRouter = require('./routes/resource');
 
 var app = express();
-async function recreateDB(){
 
-// Delete everything
-await peacock.deleteMany();
-let instance1 = new
-peacock({peacock_color:"blue",peacock_breed:"Pavo cristatus peacock",peacock_price:2500});
-let instance2 = new
-peacock({peacock_color:"white",peacock_breed:"white peafowl",peacock_price:7500});
-let instance3 = new
-peacock({peacock_color:"green",peacock_breed:"Green Peafowl",peacock_price:8000});
-instance1.save().then(doc=>{
+async function recreateDB(){
+  // Delete everything
+  await peacock.deleteMany();
+  let instance1 = new
+  peacock({peacock_color:"blue", peacock_breed:'Pavo cristatus peacock',peacock_price:2500});
+  let instance2 = new
+  peacock({peacock_color:"white", peacock_breed:'white peafowl',peacock_price:7500});
+  let instance3 = new
+  peacock({peacock_color:"green", peacock_breed:'Green Peafowl',peacock_price:8000});
+  instance1.save().then(doc=>{
   console.log("First object saved")}
   ).catch(err=>{
   console.error(err)
@@ -54,9 +51,9 @@ instance1.save().then(doc=>{
       ).catch(err=>{
       console.error(err)
       });
- }
- let reseed = true;
- if (reseed) { recreateDB();}
+  }
+  let reseed = true;
+  if (reseed) {recreateDB();}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -73,6 +70,7 @@ app.use('/users', usersRouter);
 app.use('/peacock', peacockRouter);
 app.use('/board', boardRouter);
 app.use('/choose', chooseRouter);
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
