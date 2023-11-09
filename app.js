@@ -3,11 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
 require('dotenv').config();
 const connectionString =
 process.env.MONGO_CON
 mongoose = require('mongoose');
-mongoose.connect(connectionString);
+mongoose.connect(connectionString,
+{userNewUrlParser: true,
+useUnifiedTopology: true});
 
 //Get the default connection
 var db = mongoose.connection;
@@ -27,6 +30,7 @@ var peacock = require("./models/peacock");
 
 var app = express();
 async function recreateDB(){
+
 // Delete everything
 await peacock.deleteMany();
 let instance1 = new
