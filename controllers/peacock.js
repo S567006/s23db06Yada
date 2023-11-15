@@ -10,6 +10,19 @@ exports.peacock_list = async function(req, res) {
         res.send(`{"error": ${err}}`);
         }
 };
+// Handle Costume delete on DELETE.
+exports.peacock_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await peacock.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
+    
 // for a specific peacock.
 exports.peacock_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: peacock detail: ' + req.params.id);
@@ -19,9 +32,9 @@ exports.peacock_create_post = function(req, res) {
 res.send('NOT IMPLEMENTED: peacock create POST');
 };
 // Handle peacock delete form on DELETE.
-exports.peacock_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: peacock delete DELETE ' + req.params.id);
-};
+//exports.peacock_delete = function(req, res) {
+//res.send('NOT IMPLEMENTED: peacock delete DELETE ' + req.params.id);
+//};
 // Handle peacock update form on PUT.
 exports.peacock_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: peacock update PUT' + req.params.id);
