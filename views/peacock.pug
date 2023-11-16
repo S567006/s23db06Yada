@@ -2,18 +2,16 @@ extends layout
 block content
     div(class="container-fluid")
         h1= title
-    - let items = results;
-    - let o;
+        - let items = results;
+        - let o;
         div(class="row")
-            each form,item in results
-                div(class = "col-sm-2 bg-warning" onclick=`buy(${item})`) #{form.peacock_color}              
-                div(class = "col-sm-2 bg-warning" onclick=`buy(${item})`) #{form.peacock_breed}                
-                div(class = "col-sm-2 bg-warning" onclick=`buy(${item})`) #{form.peacock_price}
+            each item in results
+                div(class = "col-sm-2 bg-warning" onclick=`buy(${item})`) #{item.peacock_color}              
+                div(class = "col-sm-2 bg-warning" onclick=`buy(${item})`) #{item.peacock_breed}                
+                div(class = "col-sm-2 bg-warning" onclick=`buy(${item})`) #{item.peacock_price}
                 hr
     
     br
-    
-
     script.
         function buy(itemNo)
         {

@@ -17,16 +17,8 @@ router.put('/peacocks/:id', peacock_controller.peacock_update_put);
 router.get('/peacocks/:id', peacock_controller.peacock_detail);
 // GET request for list of all peacock items.
 router.get('/peacocks', peacock_controller.peacock_list);
-module.exports = router;
-// API for our resources
-exports.api = function(req, res) {
-res.write('[');
-res.write('{"resource":"peacocks", ');
-res.write(' "verbs":["GET","PUT", "DELETE"] ');
-res.write('}');
-res.write(']')
-res.send();
-};
+
+/*
 // Handle peacock update form on PUT.
 exports.peacock_update_put = async function(req, res) {
 console.log(`update on id ${req.params.id} with body
@@ -46,4 +38,5 @@ res.status(500)
 res.send(`{"error": ${err}: Update for id ${req.params.id}
 failed`);
 }
-};
+};*/
+module.exports = router;

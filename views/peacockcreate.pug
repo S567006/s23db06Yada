@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1= title
+  if (toShow == null)
+     h2 No instance to create
+  else
+  form(id='peacockForm', action="/resource/peacocks", method="POST")
+    div.form-group
+      label.peacockAttr(for='peacock_color') peacock color
+      input#peacock_color(type='text', name='peacock_color')
+    div.form-group
+      label.peacockAttr(for='peacock_breed') peacock breed
+      input#peacock_breed(type='text', name='peacock_breed')
+    div.form-group
+      label.peacockAttr(for='peacock_price') peacock price
+      input#peacock_price(type='number', name='peacock_price')
+    input(type="submit")
+  script.
+    document.forms['peacockForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+            method: 'POST',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+            return resp.text(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+            alert("Save succeeded")
+            // TODO handle body
+        }).catch((error) => {
+            // TODO handle error
+            alert("Save failed " + error)
+        });
+    });
