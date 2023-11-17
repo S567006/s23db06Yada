@@ -1,19 +1,14 @@
 extends layout
 block content
+    h1=title
+    -let peacock= [{peacock_color:"Blue",peacock_breed:"Blue Peacock",peacock_price:14520},{peacock_color:"White",peacock_breed:"White Peacock",peacock_price:5655},{peacock_color:"Green",peacock_breed:"green peacock",peacock_price:476780}];
     div(class="container-fluid")
-        h1= title
-        - let items = results;
-        - let o;
-        div(class="row")
-            each item in results
-                div(class = "col-sm-2 bg-warning" onclick=`buy(${item})`) #{item.peacock_color}              
-                div(class = "col-sm-2 bg-warning" onclick=`buy(${item})`) #{item.peacock_breed}                
-                div(class = "col-sm-2 bg-warning" onclick=`buy(${item})`) #{item.peacock_price}
-                hr
-    
-    br
-    script.
-        function buy(itemNo)
-        {
-            alert(`You purchased Item ${itemNo+1}`)
-        }
+        div(class="row m-1")
+            each p in results
+                - let destination = `dispatch(\"/peacock/update?id=${p._id}\")`
+                div(class="row-sm-2", class="m-1")  color:#{p.peacock_color} name:#{p.peacock_breed} price:#{p.peacock_price}
+                    button.btn( class="btn-primary ml-1", onclick= destination) Update
+        script.
+            function dispatch(path){
+                window.location.href=path
+            }
