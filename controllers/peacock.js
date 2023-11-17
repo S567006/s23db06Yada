@@ -39,7 +39,7 @@ exports.peacock_create_Page = function(req, res) {
     };
 
     // Handle building the view for updating a costume.
-// query provides the id
+    // query provides the id
 exports.peacock_update_Page = async function(req, res) {
 console.log("update view for item "+req.query.id)
 try{
