@@ -1,13 +1,16 @@
 extends layout
 block content
     h1=title
-    -let peacock= [{peacock_color:"Blue",peacock_breed:"Blue Peacock",peacock_price:14520},{peacock_color:"White",peacock_breed:"White Peacock",peacock_price:5655},{peacock_color:"Green",peacock_breed:"green peacock",peacock_price:476780}];
+    -let items= results;
+    button.btn(class="btn-success",onclick=`dispatch(\"/peacock/create")`) create 
     div(class="container-fluid")
         div(class="row m-1")
             each p in results
                 - let destination = `dispatch(\"/peacock/update?id=${p._id}\")`
                 div(class="row-sm-2", class="m-1")  color:#{p.peacock_color} name:#{p.peacock_breed} price:#{p.peacock_price}
-                    button.btn( class="btn-primary ml-1", onclick= destination) Update
+                    button.btn( class="btn-warning ml-1", onclick= `dispatch(\"/peacock/update?id=${p._id}\")`) Update
+                    button.btn( class="btn-danger ml-1", onclick= `dispatch(\"/peacock/delete?id=${p._id}\")`) Delete
+                    button.btn( class="btn-primary ml-1", onclick= `dispatch(\"/peacock/detail?id=${p._id}\")`) Detail
         script.
             function dispatch(path){
                 window.location.href=path

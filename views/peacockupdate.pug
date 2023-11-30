@@ -32,7 +32,7 @@ block content
         method: 'PUT',
         body: new URLSearchParams(new FormData(event.target)) // event.target is the form
       }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
+        return resp.text(); // or resp.text() or whatever the server sends
       }).then((body) => {
         alert("Update succeeded");
         // TODO handle body

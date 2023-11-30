@@ -2,24 +2,24 @@ extends layout
 
 block content
   h1= title
-   if (toShow == null)
-     h2 No instance to details
+  if (toShow == null)
+    h2 No instance to details
   else
-  - let peacockid = toShow._id
-  - let peacock_color = toShow.peacock_color
-  - let peacock_breed = toShow.peacock_breed
-  - let peacock_price = toShow.peacock_price
+    - let peacockid = toShow._id
+    - let peacock_color = toShow.peacock_color
+    - let peacock_breed = toShow.peacock_breed
+    - let peacock_price = toShow.peacock_price
 
-  div
-    div.row
-      div(class='peacockAttr mr-3') Peacock ID is:
-      div #{peacockid}
-    div.row
-      div(class='peacockAttr mr-3') Peacock Color is:
-      div #{peacock_color}
-    div.row
-      div(class='peacockAttr mr-3') Peacock Breed is:
-      div #{peacock_breed}
-    div.row
-      div(class='peacockAttr mr-3') Peacock Price is:
-      div #{peacock_price}
+    div
+      div.row
+        div(class='peacockAttr mr-3') Peacock ID is:
+        div #{peacockid}
+      div.row
+        div(class='peacockAttr mr-3') Peacock Color is:
+        div #{peacock_color}
+      div.row
+        div(class='peacockAttr mr-3') Peacock Breed is:
+        div #{peacock_breed}
+      div.row
+        div(class='peacockAttr mr-3') Peacock Price is:
+        div #{peacock_price}

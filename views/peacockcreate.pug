@@ -2,9 +2,6 @@ extends layout
 
 block content
   h1= title
-  if (toShow == null)
-     h2 No instance to create
-  else
   form(id='peacockForm', action="/resource/peacocks", method="POST")
     div.form-group
       label.peacockAttr(for='peacock_color') peacock color

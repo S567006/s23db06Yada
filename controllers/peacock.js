@@ -56,21 +56,20 @@ exports.peacock_update_put = async function(req, res) {
     console.log(`update on id ${req.params.id} with body
     ${JSON.stringify(req.body)}`)
     try {
-    let toUpdate = await peacock.findById( req.params.id)
-    // Do updates of properties
-    if(req.body.peacock_color)
-    toUpdate.peacock_color = req.body.peacock_color;
-    if(req.body.peacock_breed) toUpdate.peacock_breed = req.body.peacock_breed;
-    if(req.body.peacock_price) toUpdate.peacock_price = req.body.peacock_price;
-    let result = await toUpdate.save();
-    console.log("Sucess " + result)
-    res.send(result)
+        let toUpdate = await peacock.findById( req.params.id)
+        // Do updates of properties
+        if(req.body.peacock_color) toUpdate.peacock_color = req.body.peacock_color;
+        if(req.body.peacock_breed) toUpdate.peacock_breed = req.body.peacock_breed;
+        if(req.body.peacock_price) toUpdate.peacock_price = req.body.peacock_price;
+        let result = await toUpdate.save();
+        console.log("Sucess " + result)
+        res.send(result)
     } catch (err) {
-    res.status(500)
-    res.send(`{"error": ${err}: Update for id ${req.params.id}
-    failed`);
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id}
+        failed`);
     }
-    };
+};
 
 
 // Handle Costume delete on DELETE.
@@ -111,14 +110,14 @@ res.send('NOT IMPLEMENTED: peacock update PUT' + req.params.id);
 // Handle a show all view
 exports.peacock_view_all_Page = async function(req, res) {
 try{
-thepeacocks = await peacock.find();
-console.log(thepeacocks);
-res.render('peacock', { title: 'peacock Search Results', results: thepeacocks });
+    thepeacocks = await peacock.find();
+    console.log(thepeacocks);
+    res.render('peacock', { title: 'peacock Search Results', results: thepeacocks });
 }
 catch(err){
-res.status(500);
-res.send(`{"error": ${err}}`);
-}
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
 };
 // Handle peacock create on POST.
 exports.peacock_create_post = async function(req, res) {

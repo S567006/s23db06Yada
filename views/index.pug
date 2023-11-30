@@ -1,17 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p i like watching horror movies
-  button(type="button", class="btn btn-success",onclick ='goFaster()') press here
-  <br>
-  div(id='faster') increase speed
-
-  script. 
-    var mph=20;
-    var change=1;
-    function goFaster(){
-      mph=mph+change;
-      change=change+1;
-      document.getElementById('faster').textContent=`MPH ${mph} with change ${change}`
-    }
+  if !user
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/peacock") Take me to peacock
+    br
+    a(href="/logout") Logout
