@@ -11,8 +11,14 @@ const peacock_controllers = require('../controllers/peacock');
 router.get('/', peacock_controllers.peacock_view_all_Page);
 
 module.exports = router;
-
-/* GET detail peacock page */
+const secured = (req, res, next) => {
+    if (req.user){
+    return next;
+    }
+req.session.returnTo = req.originalUrl;
+res.redirect ("/login");
+}
+/* GET detail peacock page /
 router.get('/detail', peacock_controllers.peacock_view_one_Page);
 
 /* GET create peacock page */
